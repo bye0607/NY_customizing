@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="javascript/jquery-1.12.3.js"></script>
+    <script src="javascript/jquery.parallax-scroll.min.js"></script>
+    <!-- defer 속성은 script가 잠깐 지연 되도록 하여 -->
+    <!-- HTML 구문 분석이 완료된 후 스크립트를 실행하도록 함 -->
+    <script src="javascript/script.js" defer type="text/javascript"></script>
+</head>
+<!-- body에 .sub 지정으로 메인화면과 서브화면 구분 : sub의 공통 스타일 지정 -->
+<body class="sub">
+    <div class="wrapper">
+    <header>
+        <!-- .top은 .logo와 .menu를 묶어줌 -->
+        <div class="top">
+            <div class="logo">
+                <a href="index.html"><img src="images/logo.png" alt="로고 이미지"></a>
+            </div>
+            <nav class="menu">
+                <ul class="navi">
+                    <li>
+                        <a href="#">회사소개</a>
+                        <ul class="submenu">
+                            <li><a href="company.html">인사말</a></li>
+                            <li><a href="#">조직도</a></li>
+                            <li><a href="location.html">오시는길</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                    <a href="#">사업영역</a>
+                    <ul class="submenu">
+                        <li><a href="#">주택사업</a></li>
+                        <li><a href="#">건축사업</a></li>
+                        <li><a href="#">인테리어</a></li>
+                    </ul>
+                    </li>
+                    <li>
+                        <a href="#">입주정보</a>
+                        <ul class="submenu">
+                            <li><a href="#">입주단지</a></li>
+                            <li><a href="#">입주캘린더</a></li>
+                            <li><a href="#">입주모임</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">인재채용</a>
+                        <ul class="submenu">
+                            <li><a href="#">직무소개</a></li>
+                            <li><a href="#">채용공고</a></li>
+                            <li><a href="#">기술교육</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!-- .bodywrap에 Parallax-scroll 적용 -->
+    <div class="bodywrap bg-holder" id="pic3" data-width="1024" data-height="768">
+        <div class="visual">
+            <div class="visual_txt">
+                <h2>회원가입</h2>
+                <p>남율건설 홈페이지 방문을 진심으로 환영합니다.</p>
+            </div>
+        </div>
+        <div class="contents">
+            <div class="cont_body">
+                <form action="#">
+                    <fieldset>
+                        <legend>기본회원정보(필수입력항목)</legend>
+                        <table class="form_content">
+                            <colgroup>
+                                <col>
+                                <col>
+                                <col>
+                                <col>
+                            </colgroup>
+                            <tr>
+                                <th>이름 <span class="required">*</span></th>
+                                <td colspan="3"><input type="text" placeholder="이름을 입력해주세요" id="mem_nm" required></td>
+                            </tr>
+                            <tr>
+                                <th>아이디 <span class="required">*</span></th>
+                                <td colspan="3"><input type="text" placeholder="아이디를 입력해주세요" id="mem_id" required></td>
+                            </tr>
+                            <tr>
+                                <th>비밀번호 <span class="required">*</span></th>
+                                <td colspan="3"><input type="password" placeholder="비밀번호를 입력해주세요" id="mem_pwd" required></td>
+                            </tr>
+                            <tr>
+                                <th>비밀번호확인 <span class="required">*</span></th>
+                                <td colspan="3"><input type="password" placeholder="비밀번호를 다시 입력해주세요" id="mem_pwd_confirm" required></td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                    <fieldset>
+                        <legend>부가입력사항</legend>
+                        <table class="form_content">
+                            <colgroup>
+                                <col>
+                                <col>
+                                <col>
+                                <col>
+                            </colgroup>
+                            <tr>
+                                <th>생년월일</div>
+                                </th>
+                                <td colspan="3">
+                                    <input type="date" id="brith" data-placeholder="날짜 선택">
+                                    <span><input type="radio" name="brith_sm" id="brith_s"><label for="brith_s">양력</label></span>
+                                    <span><input type="radio" name="brith_sm" id="brith_m"><label for="brith_m">음력</label></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>성별</th>
+                                <td colspan="3">
+                                    <span><input type="radio" name="gender" id="gender_f"><label for="gender_f">여자</label></span>
+                                    <span><input type="radio" name="gender" id="gender_m"><label for="gender_m">남자</label></span>
+                                    <span><input type="radio" name="gender" id="gender_e"><label for="gender_e">기타</label></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>이메일</th>
+                                <td colspan="3"><input type="email" placeholder="이메일을 입력해주세요" id="email" autocomplete="on"></td>
+                            </tr>
+                            <tr>
+                                <th>휴대폰번호</th>
+                                <td colspan="3">
+                                    <select name="" id="mobile">
+                                        <option value="010">010</option>
+                                        <option value="011">011</option>
+                                        <option value="016">016</option>
+                                        <option value="017">017</option>
+                                        <option value="018">018</option>
+                                        <option value="019">019</option>
+                                    </select>
+                                    <input type="tel" placeholder="" id="mobile1" pattern="[0-9]{4}-[0-9]{4}" title="0000-0000">
+                                    <span><span class="required">*</span> 휴대폰번호는 하이픈(-)을 포함하여 입력해주세요</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th rowspan="2">주소</th>
+                                <td colspan="3">
+                                    <input type="text" id="sample6_postcode" placeholder="우편번호">
+                                    <button type="button" onclick="sample6_execDaumPostcode()">우편번호찾기</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="addr"><input type="text" id="sample6_address" placeholder="주소"></td>
+                                <td class="addr" colspan="2">
+                                    <input type="text" id="sample6_detailAddress" placeholder="상세주소를 입력하세요">
+                                    <input type="text" id="sample6_extraAddress" placeholder="참고항목" hidden>
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                    <div class="btn_cont">
+                        <button type="submit">회원가입</button><button type="reset">취소</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <footer>
+        <div class="copy">
+            COPYRIGHT ©	by WEBDESIGN. ALL RIGHTS RESERVED
+        </div>
+        <div class="site">
+            <div class="btmenu">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="18" height="18"><path d="M17,8H7V7a5,5,0,0,1,9.375-2.422,1,1,0,0,0,1.749-.971A7,7,0,0,0,5,7V8.424A5,5,0,0,0,2,13v6a5.006,5.006,0,0,0,5,5H17a5.006,5.006,0,0,0,5-5V13A5.006,5.006,0,0,0,17,8Zm3,11a3,3,0,0,1-3,3H7a3,3,0,0,1-3-3V13a3,3,0,0,1,3-3H17a3,3,0,0,1,3,3Z"/><path d="M12,14a1,1,0,0,0-1,1v2a1,1,0,0,0,2,0V15A1,1,0,0,0,12,14Z"/></svg>
+                            <span>로그인</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="joinus.html">
+                            <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="18" height="18"><path d="M9,12A6,6,0,1,0,3,6,6.006,6.006,0,0,0,9,12ZM9,2A4,4,0,1,1,5,6,4,4,0,0,1,9,2Z"/><path d="M9,14a9.011,9.011,0,0,0-9,9,1,1,0,0,0,2,0,7,7,0,0,1,14,0,1,1,0,0,0,2,0A9.011,9.011,0,0,0,9,14Z"/><path d="M22,7.875a2.107,2.107,0,0,0-2,2.2,2.107,2.107,0,0,0-2-2.2,2.107,2.107,0,0,0-2,2.2c0,1.73,2.256,3.757,3.38,4.659a.992.992,0,0,0,1.24,0c1.124-.9,3.38-2.929,3.38-4.659A2.107,2.107,0,0,0,22,7.875Z"/></svg>
+                            <span>회원가입</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="18" height="18"><path d="M21,12.424V11A9,9,0,0,0,3,11v1.424A5,5,0,0,0,5,22a2,2,0,0,0,2-2V14a2,2,0,0,0-2-2V11a7,7,0,0,1,14,0v1a2,2,0,0,0-2,2v6H14a1,1,0,0,0,0,2h5a5,5,0,0,0,2-9.576ZM5,20H5a3,3,0,0,1,0-6Zm14,0V14a3,3,0,0,1,0,6Z"/></svg>
+                            <span>고객센터</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="familysite">
+                <select name="sitelist">
+                    <option value="#">패밀리사이트1</option>
+                    <option value="#">패밀리사이트2</option>
+                    <option value="#">패밀리사이트3</option>
+                </select>
+            </div>
+        </div>
+    </footer>
+    </div>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
+        function sample6_execDaumPostcode() {
+            new daum.Postcode({
+                oncomplete: function(data) {
+                    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                    // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                    // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                    var addr = ''; // 주소 변수
+                    var extraAddr = ''; // 참고항목 변수
+
+                    //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                    if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                        addr = data.roadAddress;
+                    } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                        addr = data.jibunAddress;
+                    }
+
+                    // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                    if(data.userSelectedType === 'R'){
+                        // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                        // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                        if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                            extraAddr += data.bname;
+                        }
+                        // 건물명이 있고, 공동주택일 경우 추가한다.
+                        if(data.buildingName !== '' && data.apartment === 'Y'){
+                            extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                        }
+                        // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                        if(extraAddr !== ''){
+                            extraAddr = ' (' + extraAddr + ')';
+                        }
+                        // 조합된 참고항목을 해당 필드에 넣는다.
+                        document.getElementById("sample6_extraAddress").value = extraAddr;
+                    
+                    } else {
+                        document.getElementById("sample6_extraAddress").value = '';
+                    }
+
+                    // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                    document.getElementById('sample6_postcode').value = data.zonecode;
+                    document.getElementById("sample6_address").value = addr;
+                    // 커서를 상세주소 필드로 이동한다.
+                    document.getElementById("sample6_detailAddress").focus();
+                }
+            }).open();
+        }
+    </script>
+</body>
+</html>

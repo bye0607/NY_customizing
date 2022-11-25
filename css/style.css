@@ -1,0 +1,490 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@100;200;300;400;500;600;700&display=swap');
+
+/* css 초기화 */
+* {
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+    font-family: 'IBM', '맑은 고딕', sans-serif;
+    color: #333333;
+    box-sizing:border-box;
+}
+/* https://parallax-scroll.aenism.com/
+플러그인 적용을 위해 width, height 100%로 지정 */
+html, body {position:relative;width: 100%;height: 100%;}
+fieldset, img {border:0}
+img {display: block;max-width:100%}
+a{text-decoration: none;display:block;}
+ul, ol, li {list-style:none}
+button, input, select, textarea {height:30px;font-size:15px;color:#2f2f2f;border:1px solid #dbdbdb;padding:0 10px;vertical-align:middle;border-radius:0}
+button {height:30px;font-size:15px;color:#fff;border:0;border-radius:3px;background-color:#424242;cursor:pointer}
+input::placeholder, textarea::placeholder {color:#ccc}
+table {width:100%;border-collapse:collapse}
+
+.wrapper {
+    width: 1000px;
+    font-size: 20px;
+}
+
+/* 레이어 팝업창(#modal) 배경 스타일 적용 */
+#modal{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+    display: none;
+}
+
+#modal.active{
+    display: block;
+}
+
+/* 레이어 팝업창 스타일 적용 */
+.modal_up{
+    width: 500px;
+    height: 400px;
+    position: fixed;
+    left: 30%;
+    top: 20%;
+    background-color: #ffffff;
+}
+
+.uptitle{
+    margin-top: 30px;
+    text-align: center;
+    line-height: 16px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.upbody{
+    padding: 30px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 30px;
+}
+
+.btn{
+    height: 25px;
+    width: 100px;
+    cursor: pointer;
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 3px;
+    background: #fabd43;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+
+header{
+    /* 상단 높이 */
+    height: 100px;
+    /* 상단 너비 */
+    width: 1000px;
+}
+
+/* .logo와 .menu를 묶어줌 */
+.top{
+    /* 상단 로고와 메뉴가 들어가는 곳 높이 */
+    height: 100px;
+    /* 상단 로고와 메뉴가 들어가는 곳 너비 */
+    width: 1000px;
+}
+
+/* 로고 영역 스타일 적용 */
+.logo{
+    float: left;
+    /* 로고 영역 높이 */
+    height: 100px;
+    /* 로고 영역 너비 */
+    width: 180px;
+}
+
+.logo img{
+    float: left;
+    width: 150px;
+    margin-top: 35px;
+    margin-left: 25px;
+}
+
+.menu{
+    float: left;
+    height: 100px;
+    width: 800px;
+    z-index: 100;
+}
+
+.navi{
+    float: right;
+    margin-top: 30px;
+    margin-right: 10px;
+}
+
+.navi > li{
+    float: left;
+    cursor:pointer; /* 1depth menu a에 pointer-events를 적용하면서 pointer 커서가 없어짐 => 부모요소에 커서를 설정 */
+}
+
+.navi > li > a{
+    height: 40px;
+    width: 180px;
+    line-height: 40px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #0066ad;
+    color: #ffffff;
+    pointer-events:none; /* 1depth menu 링크효과 제거 */
+}
+
+.navi > li > a:hover{
+    background-color: #30a3f3;
+}
+
+.submenu{
+    width: 180px;
+    position: absolute;
+    display: none;
+    z-index: 1100;
+}
+
+.submenu > li > a{
+    height: 35px;
+    line-height: 35px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #ababab;
+    color: #ffffff;
+}
+
+.submenu > li > a:hover{
+    background-color: #30a3f3;
+}
+
+/* .imgslide와 .contents 묶어줌 */
+.bodywrap{
+    /* .imgslide 높이 300px + .contents 높이 200px */
+    height: 500px;
+    /* .imgslide 너비, contents 너비; */
+    width: 1000px;
+}
+
+.imgslide{
+    /* 이미지 슬라이드 높이 */
+    height: 300px;
+    /* 이미지 슬라이드 너비 */
+    width: 1000px;
+    /* 이미지 슬라이드 영역 제한 */
+    /* position: relative; */
+    /* 영역 밖으로 보이지 않도록 제한 */
+    overflow: hidden;
+}
+
+.imgslide > a{
+    display: block;
+    position: absolute;
+}
+
+.imgtext{
+    height: 50px;
+    width: 500px;
+    position: absolute;
+/* 박스 요소의 margin-top -25px, margin-right 0px, margin-bottom 0px, */
+/* margin-left -150px 여백을 의미함. position:absolute를 지정하였으므로 */
+/* 상위 컨테이너를 기준으로 절대 좌표값을 가짐. */
+/* 부모 요소에 position:relative를 주고 자식 요소에 position:absolute */
+/* 적용한 후 left:50%, top:50%, margin-top을 height값의 1/2 음수값(-값), */
+/* margin-left를 width의 1/2 음수값(-값)을 주면 수평, 수직으로 동시에 */
+/* 가운데 정렬을 할 수 있음 */
+    margin: -25px 0 0 -250px;
+    left: 50%;
+    top: 50%;
+    text-align: center;
+    color: #ffffff;
+    font-weight: bold;
+    line-height: 50px;
+    background-color: rgba(40, 40, 40, 0.5);
+}
+
+
+.contents{
+    /* 콘텐츠(공지사항 notice, 갤러리 gallery, 바로가기 shortcut) 높이 */
+    height: 200px;
+    /* 콘텐츠(공지사항 notice, 갤러리 gallery, 바로가기 shortcut) 너비 */
+    width: 1000px;
+    clear:both
+}
+
+.notice{
+    float: left;
+    height: 180px;
+    width: 390px;
+    margin-top: 10px;
+}
+
+.tab{
+    float: left;
+    width: 400px;
+}
+
+.tab h4{
+    float: left;
+    height: 20px;
+    width: 120px;
+    line-height: 20px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #fabd43;
+}
+
+.notice > div{
+    width: 390px;
+    border-bottom-color: #fabd43;
+    border-bottom-width:2px;
+    border-bottom-style:solid;
+}
+
+/* 공지사항(.notice) 콘텐츠 영역 스타일 적용 */
+.notice li{
+    float: left;
+    height: 38px;
+    width: 390px;
+    line-height: 38px;
+    font-size: 14px;
+}
+
+.notice li span{
+    float: right;
+}
+
+/* 공지사항(.notice) 2배수(2n) 요소 배경 스타일 적용 */
+.notice li:nth-child(2n){
+    background-color: #fabd43;
+}
+
+/* 공지사항(.notice) 콘텐츠에 마우스를 올릴 때 스타일 적용 */
+.notice li:hover{
+    font-weight: bold;
+}
+
+.gallery{
+    float: left;
+    height: 180px;
+    width: 390px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.gallery > div{
+    width: 390px;
+    border-bottom-color:#fabd43;
+    border-bottom-width:2px;
+    border-bottom-style:solid;
+}
+
+/* 갤러리(.gallery) 콘텐츠 영역 스타일 적용 */
+.gallery li{
+    float: left;
+    margin-top: 10px;
+    margin-left: 4px;
+}
+
+/* 갤러리(.gallery) 콘텐츠 이미지 영역 스타일 적용 */
+.gallery img{
+    height: 145px;
+    width: 125px;
+}
+
+/* 갤러리(.gallery) 콘텐츠에 마우스를 올릴 때 스타일 적용 */
+.gallery li:hover{
+    opacity: 0.5;
+}
+
+.shortcut{
+    float: right;
+    height: 180px;
+    width: 200px;
+    margin-top: 10px;
+}
+
+.shortcut img{
+    float: right;
+    height: 180px;
+    width: 200px;
+}
+
+.sctext{
+    float: right;
+    height: 30px;
+    width: 100px;
+    position: absolute;
+    text-align: center;
+    color: #ffffff;
+    font-weight: bold;
+    line-height: 30px;
+    background-color: rgba(40, 40, 40, 0.5);
+    margin-top: 80px;
+    margin-left: 50px;
+}
+
+.sctext:hover{
+    opacity: 0.5;
+}
+
+footer{
+    /* 하단 높이 */
+    height: 100px;
+    /* 하단 너비 */
+    width: 1000px;
+    background-color: #48487d;
+}
+
+.copy{
+    float: left;
+    /* Copyright 높이 */
+    height: 100px;
+    /* Copyright 너비 */
+    width: 500px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 100px;
+    color: #ffffff;
+}
+
+/* .btmenu와 .familysite 묶어줌 */
+.site{
+    float: right;
+    /* 하단 메뉴(.btmenu)와 패밀리 사이트(.familysite) 들어가는 곳 높이 */
+    height: 100px;
+    /* 하단 메뉴(.btmenu)와 패밀리 사이트(.familysite) 들어가는 곳 너비 */
+    width: 500px;
+}
+
+.btmenu{
+    float: right;
+    /* 하단 메뉴 높이(site 높이의 1/2) */
+    height: 50px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 50px;
+    padding-right:5px
+}
+
+/* 하단 메뉴를 아이콘(svg)+텍스트 로 구성 */
+.btmenu li {display:inline-block;padding:0 10px}
+.btmenu li > a > span, .btmenu li > a > svg {vertical-align:middle}
+.btmenu li > a > span {color:#fff}
+.btmenu li > a > svg {fill:#fff}
+.btmenu li > a:hover > span {color:#fabd43}
+.btmenu li > a:hover > svg {fill:#fabd43}
+
+.familysite{
+    float: right;
+    /* 패밀리 사이트 높이(site 높이의 1/2) */
+    height: 50px;
+    /* 패밀리 사이트 너비 */
+    width: 300px;
+}
+
+.familysite select{
+    float: right;
+    height: 30px;
+    width: 280px;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+/* 오늘 하루 열지 않음 레이어 팝업 */
+#popup_today {width:100%;height:100%;position:absolute;left:0;top:0;background:rgba(0, 0, 0, 0.6);z-index:1000;}
+#popup_today .today_wrap {width:450px;height:400px;position:absolute;background:#fff;border:1px solid #000;left:50%;top:50%;transform:translate(-50%, -50%);}
+#popup_today .today_wrap .today_tit {margin-top:50px;text-align:center;line-height:30px;font-size:24px;font-weight:600;color:#0066ad}
+#popup_today .today_wrap .today_cont {padding:30px;line-height:2;font-size:18px;word-break: keep-all;}
+#popup_today .btn_close {position:absolute;bottom:0;width:100%;height:40px;background:#000;font-size:14px;padding:10px 12px;}
+#popup_today .btn_close label {color:#fff;}
+#popup_today .btn_close input[type="checkbox"] {width:16px;height:16px;vertical-align:middle;margin-right:6px}
+#popup_today .btn_close .closeBtn {position:absolute;right:12px;bottom:5px;height:30px;color:#fff;font-weight:600;border-radius:5px;background:#0066ad;padding:0 10px;cursor:pointer;}
+
+/* vergas plugin 적용을 위한 메인페이지 스타일링 수정 */
+/* 지정크기로 x, y 기준 center 정렬 */
+.main .wrapper {position:absolute;width: 1040px;left:50%;top:49%;transform:translate(-50%,-50%);background:#fff;padding:20px;border-radius:10px;box-shadow: 0 0 20px 5px rgba(40, 40, 40, 0.6);}
+
+/* vegas jquery plugin 하단 타이머바 커스터마이징 */
+.vegas-timer {height:10px;}
+.vegas-timer-progress {background:#fabd43}
+
+/* subpage 공통 */
+/* width:1000px로 고정되어 있는 영역을 parallaxScroll 적용을 위해 .sub로 width, height 및 style 재정의 */
+.sub .wrapper, .sub .bodywrap {width:100%;height:100%}
+.sub .bodywrap {position:relative;}
+.sub .contents {width:100%;height:auto;background:#fff}
+.sub header {width:100%;background:#fff;}
+.sub footer {position:relative;width:100%}
+.sub footer .copy {position:absolute;left:calc(50% - 500px);text-align:left;}
+.sub footer .site {position:absolute;right:calc(50% - 500px);}
+
+/* parallaxScroll */
+.bg-holder {width:100%;height:100%;}
+.bg-holder#pic1 {background-image: url('../images/main_bg01.jpg');} /* 인사말 */
+.bg-holder#pic2 {background-image: url('../images/main_bg02.jpg');} /* 회원가입 */
+.bg-holder#pic3 {background-image: url('../images/main_bg03.jpg');} /* 오시는길 */
+
+/* .visual 영역의 높이만큼 배경이미지를 보이도록 적용 */
+.visual {position:relative;width:1000px;height:500px;margin:0 auto;}
+.visual_txt {position:absolute;left:calc(50% - 460px);top:50%;transform:translateY(-50%);background:rgba(0, 0, 0, 0.5);padding:30px;}
+.visual_txt h2, .visual_txt p {font-weight:500;color:#fff;}
+.visual_txt h2 {font-size:36px;padding-bottom:10px}
+.visual_txt p {font-size:24px;}
+.cont_body {width:1000px;padding:100px 30px}
+
+/* 인사말 */
+/* tubular 영상제어 버튼 영역 */
+.mv_btn {width:100%;background:rgba(0, 0, 0, 0.6);}
+.mv_btn ul {display:flex;width:600px;justify-content:space-around;}
+.mv_btn a {display:inline-block;color:#fff;padding:20px 5px;}
+.mv_btn a:hover {color:#fabd43}
+/* tubular 플러그인, parallaxScroll 플러그인 적용을 위해 인사말 페이지에 .company를 적용하고 style 재정의 */
+.company .wrapper {position:relative;z-index: 10;background:#fff}
+
+/* 오시는길 */
+#map{width:100%;height:400px}
+.info {margin-top:50px}
+.info .title {font-size:24px;font-weight:700;margin-bottom:10px}
+.info p {font-size:16px;margin-bottom:30px}
+.info dl {padding-bottom:30px}
+.info dt {font-size:18px;font-weight:500;padding-bottom:14px}
+.info dd {font-size:16px;padding-bottom:5px}
+.info dl:last-child {padding-bottom:0}
+.info dd .blue {color:#003599}
+.info dd .green {color:#3fae36}
+
+/* 회원가입 */
+/* join form */
+form {width:100%;}
+form fieldset {margin-bottom:60px}
+form legend {width:100%;font-size:20px;font-weight:600;border-bottom:2px solid #424242;padding-bottom:15px;margin-bottom:20px}
+.form_content {border:1px solid #ccc}
+.form_content .required {color:#FF535D;}
+.form_content th, .form_content td {font-size:15px;text-align:left;border:1px solid #e0e0e0;padding:8px 15px;}
+.form_content th {width:150px;background:#f5f5f5;}
+.form_content td label {padding:0 15px 0 5px;}
+.form_content input + span {margin-left:15px}
+/* 주소 */
+.addr:first-child {border-right:0;padding-right:2px}
+.addr:last-child {border-left:0;padding-left:2px}
+.addr input {width:100%}
+/* 회원가입버튼 */
+.btn_cont {text-align:center;margin-top:60px}
+.btn_cont button {width:120px; height:40px;}
+.btn_cont button + button {margin-left:10px}
+.btn_cont button[type="submit"] {background:#0066ad;}
+.btn_cont button[type="reset"] {background:#48487d;}
