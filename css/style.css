@@ -452,7 +452,8 @@ footer{
 .mv_btn ul {display:flex;width:600px;justify-content:space-around;}
 .mv_btn a {display:inline-block;color:#fff;padding:20px 5px;}
 .mv_btn a:hover {color:#fabd43}
-/* tubular 플러그인, parallaxScroll 플러그인 적용을 위해 인사말 페이지에 .company를 적용하고 style 재정의 */
+/* tubular 플러그인, parallaxScroll 플러그인 적용을 위해 
+   인사말 페이지에 .company를 적용하고 style 재정의 */
 .company .wrapper {position:relative;z-index: 10;background:#fff}
 
 /* 오시는길 */

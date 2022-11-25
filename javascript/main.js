@@ -1,5 +1,3 @@
-
-
 // 메인 - vegas jquery plugin 배경이미지 슬라이드 효과
 $("body.main").vegas({
     animation: 'random',
@@ -10,7 +8,7 @@ $("body.main").vegas({
         { src: '../images/main_bg03.jpg' },
         { src: '../images/main_bg04.jpg' }
     ],
-    overlay: '../images/vegas_overlay_04.png' //배경이미지 위에 dot pattern 이미지를 overlay 적용
+    overlay: '../images/vegas_overlay_04.png'  //배경이미지 위에 dot pattern 이미지 적용
 });
 
 // 메인 - Owl Carousel로 .imgslide 영역에 이미지 슬라이드 효과 적용
